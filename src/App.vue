@@ -28,8 +28,23 @@
           <p class="icons__item__desc">{{ icon.title }}</p>
         </div>
       </div>
-      <div class="gap">
-
+      <div class="gap"></div>
+      <div class="nearby">
+        <h3 class="nearby__title">附近店鋪</h3>
+        <div class="nearby__item">
+        <img
+         class="nearby__item__img"
+         src="http://www.dell-lee.com/imgs/vue3/near.png">
+         <div class="nearby__content">
+              <div class="nearby__content__title">沃爾瑪</div>
+              <div class="nearby__content__tags">
+               <span class="nearby__content__tag">月售一萬</span>
+               <span class="nearby__content__tag">月售一萬</span>
+               <span class="nearby__content__tag">月售一萬</span>
+              </div>
+              <p class="nearby__content__hightlight">滿66元折6元運費券</p>
+         </div>
+        </div>
       </div>
     </div>
     <div class="docker">
@@ -61,6 +76,42 @@ export default {
         {
           title: '超市便利',
           imgsSrc: ['http://www.dell-lee.com/imgs/vue3/超市.png']
+        },
+        {
+          title: '菜市場',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/菜市场.png']
+        },
+        {
+          title: '水果店',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/水果店.png']
+        },
+        {
+          title: '鮮花綠植',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/鲜花.png']
+        },
+        {
+          title: '医药健康',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/医药健康.png']
+        },
+        {
+          title: '家居時尚',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/家居.png']
+        },
+        {
+          title: '烘焙蛋糕',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/蛋糕.png']
+        },
+        {
+          title: '签到',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/签到.png']
+        },
+        {
+          title: '红包套餐',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/红包.png']
+        },
+        {
+          title: '大牌免运',
+          imgsSrc: ['http://www.dell-lee.com/imgs/vue3/大牌免运.png']
         }
       ]
     };
@@ -72,13 +123,14 @@ export default {
 @import "./style/variables.scss";
 @import "./style/mixins.scss";
 .wrapper {
+  overflow-y:auto;
   width: 100%;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0.5rem;
   right: 0;
-  padding: 0 0.18rem;
+  padding: 0 .18rem .1rem .18rem;
 }
 .search {
   vertical-align: middle;
@@ -132,6 +184,47 @@ export default {
   height:.1rem;
   background: $content-bgColor;
   margin: 0 -.18rem
+}
+.nearby {
+  &__title {
+    margin: .16rem 0 .02rem 0;
+    font-size: .18rem;
+    font-weight: normal;
+    color:$content-fontcolor;
+  }
+  &__item {
+    display:flex;
+    padding-top:.12rem ;
+    &__img {
+      margin-right: .16rem;
+      width:.56rem;
+      height: .56rem;
+    }
+  }
+  &__content {
+    flex:1;
+    padding-bottom: .12rem;
+      border-bottom:1px solid  $content-bgColor;  ;
+    &__title {
+      line-height: .22rem;
+      font-size: .16rem;
+      color:$content-fontcolor;
+    }
+    &__tags {
+      margin-top:.08rem;
+      line-height: .18rem;
+      font-size: .13rem;
+    }
+       &__tag {
+        margin-right: .16rem;
+      }
+     &__hightlight {
+         line-height: .18rem;
+      font-size: .13rem;
+       color:#E93B3B;
+       margin:.08rem 0 0 0;
+     }
+  }
 }
 .position {
   padding: 0.16rem 0;
