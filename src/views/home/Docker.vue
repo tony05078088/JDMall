@@ -1,32 +1,46 @@
 <template>
   <div class="docker">
-    <span class="docker__item docker__item--active">
-      首頁
-      <i class="twicon-td-flag"></i>
-    </span>
-    <span class="docker__item"
-      >購物車
-      <i class="twicon-gate-cks"></i>
-    </span>
-    <span class="docker__item">
-      訂單
-      <i class="twicon-youbike"></i>
-    </span>
-    <span class="docker__item"
-      >我的
-      <i class="twicon-tea-pot"></i>
+    <span
+      v-for="(list, index) in dockerList"
+      :key="list.icon"
+      :class="{ 'docker__item': true, 'docker__item--active': index === 0 }"
+      >{{ list.text }}
+      <i :class="list.icon"></i>
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Docker'
+  name: 'Docker',
+  setup () {
+    const dockerList = [
+      {
+        icon: 'twicon-td-flag',
+        text: '首頁'
+      },
+      {
+        icon: 'twicon-gate-cks',
+        text: '購物車'
+      },
+      {
+        icon: 'twicon-youbike',
+        text: '訂單'
+      },
+      {
+        icon: 'twicon-tea-pot',
+        text: '我的'
+      }
+    ];
+    return {
+      dockerList
+    };
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/variables.scss";
+@import '@/style/variables.scss';
 .docker {
   display: flex;
   position: absolute;

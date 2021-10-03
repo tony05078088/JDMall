@@ -1,19 +1,22 @@
 <template>
   <div class="nearby">
     <h3 class="nearby__title">附近店鋪</h3>
-    <div class="nearby__item">
+    <div class="nearby__item" v-for="item in nearbyList" :key="item.id">
       <img
         class="nearby__item__img"
         src="http://www.dell-lee.com/imgs/vue3/near.png"
       />
       <div class="nearby__content">
-        <div class="nearby__content__title">沃爾瑪</div>
+        <div class="nearby__content__title">{{ item.title }}</div>
         <div class="nearby__content__tags">
-          <span class="nearby__content__tag">月售一萬</span>
-          <span class="nearby__content__tag">月售一萬</span>
-          <span class="nearby__content__tag">月售一萬</span>
+          <span
+            class="nearby__content__tag"
+            v-for="tag in item.tags"
+            :key="tag"
+            >{{ tag }}</span
+          >
         </div>
-        <p class="nearby__content__hightlight">滿66元折6元運費券</p>
+        <p class="nearby__content__hightlight">{{ item.desc }}</p>
       </div>
     </div>
   </div>
@@ -21,12 +24,35 @@
 
 <script>
 export default {
-  name: 'Nearby'
+  name: 'Nearby',
+  setup () {
+    const nearbyList = [
+      {
+        id: 1,
+        title: '沃爾瑪',
+        tags: ['月售一萬+', '低消百元', '基礎運費$60'],
+        desc: '滿66元折6元運費券'
+      },
+      {
+        id: 2,
+        title: '沃爾瑪',
+        tags: ['月售一萬+', '低消百元', '基礎運費$60'],
+        desc: '滿66元折6元運費券'
+      },
+      {
+        id: 3,
+        title: '沃爾瑪',
+        tags: ['月售一萬+', '低消百元', '基礎運費$60'],
+        desc: '滿66元折6元運費券'
+      }
+    ];
+    return { nearbyList };
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/variables.scss";
+@import '@/style/variables.scss';
 .nearby {
   &__title {
     margin: 0.16rem 0 0.02rem 0;
