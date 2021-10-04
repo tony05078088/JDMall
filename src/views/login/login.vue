@@ -15,14 +15,23 @@
         placeholder="請輸入密碼"
       />
     </div>
-    <div class="wrapper__login-button">登錄</div>
+    <div class="wrapper__login-button" @click="handleLogin">登錄</div>
     <div class="wrapper__login-link">註冊</div>
   </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
-  name: 'Login'
+  name: 'Login',
+  setup () {
+    const router = useRouter();
+    const handleLogin = () => {
+      localStorage.isLogin = true;
+      router.push({ name: 'Home' });
+    };
+    return { handleLogin };
+  }
 };
 </script>
 
