@@ -12,28 +12,26 @@
       <input
         type="password"
         class="wrapper__input__content"
-        placeholder="請輸入密碼"
+        placeholder="請確認密碼"
       />
     </div>
-    <div class="wrapper__login-button" @click="handleLogin">登錄</div>
-    <div class="wrapper__login-link" @click="handleRegister">註冊</div>
+    <div class="wrapper__register-button">註冊</div>
+    <div class="wrapper__register-link" @click="handleLoginClick">
+      已有帳號,去登錄
+    </div>
   </div>
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
 export default {
-  name: 'Login',
+  name: 'Register',
   setup () {
     const router = useRouter();
-    const handleLogin = () => {
-      localStorage.isLogin = true;
-      router.push({ name: 'Home' });
+    const handleLoginClick = () => {
+      router.push({ name: 'Login' });
     };
-    const handleRegister = () => {
-      router.push({ name: 'Register' });
-    };
-    return { handleLogin, handleRegister };
+    return { handleLoginClick };
   }
 };
 </script>
@@ -76,7 +74,7 @@ export default {
       }
     }
   }
-  &__login-button {
+  &__register-button {
     margin: 0.32rem 0.4rem 0.16rem 0.4rem;
     background: #0091ff;
     height: 0.48rem;
@@ -87,7 +85,7 @@ export default {
     font-size: 0.16rem;
     text-align: center;
   }
-  &__login-link {
+  &__register-link {
     font-size: 0.14rem;
     color: $content-notice-fontcolor;
     text-align: center;
