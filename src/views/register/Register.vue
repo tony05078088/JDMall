@@ -84,6 +84,7 @@ export default {
     color: #ffffff;
     font-size: 0.16rem;
     text-align: center;
+    cursor: pointer;
   }
   &__register-link {
     font-size: 0.14rem;

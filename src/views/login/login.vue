@@ -22,6 +22,7 @@
     </div>
     <div class="wrapper__login-button" @click="handleLogin">登錄</div>
     <div class="wrapper__login-link" @click="handleRegister">註冊</div>
+    <toast v-if="data.showToast" :message="data.toastMessage" />
   </div>
 </template>
 
@@ -29,31 +30,44 @@
 import { useRouter } from 'vue-router';
 import { post } from '../utils/request';
 import { reactive } from '@vue/reactivity';
-
+import Toast from '../../components/Toast.vue';
 export default {
   name: 'Login',
+  components: {
+    Toast
+  },
   setup () {
     const data = reactive({
       username: '',
-      password: ''
+      password: '',
+      showToast: false,
+      toastMessage: ''
     });
     const router = useRouter();
+    const showToast = message => {
+      data.showToast = true;
+      data.toastMessage = message;
+      setTimeout(() => {
+        data.showToast = false;
+        data.toastMessage = '';
+      }, 2000);
+    };
     const handleLogin = async () => {
       try {
-        const result = await post('/api/user/login2222', {
+        const result = await post('111//api/user/login2222', {
           username: data.username,
           password: data.password
         });
-        console.log(result);
+        // console.log(result);
         if (result?.errno === 0) {
           alert('成功');
           localStorage.isLogin = true;
           router.push({ name: 'Home' });
         } else {
-          alert('登錄失敗');
+          showToast('登錄失敗');
         }
       } catch (e) {
-        alert('請求失敗');
+        showToast('請求失敗');
       }
     };
     const handleRegister = () => {
@@ -112,6 +126,7 @@ export default {
     color: #ffffff;
     font-size: 0.16rem;
     text-align: center;
+    cursor: pointer;
   }
   &__login-link {
     font-size: 0.14rem;
