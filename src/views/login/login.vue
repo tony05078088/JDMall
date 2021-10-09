@@ -5,12 +5,17 @@
       class="wrapper__img"
     />
     <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="請輸入手機號碼" />
+      <input
+        class="wrapper__input__content"
+        v-model="data.username"
+        placeholder="用戶名"
+      />
     </div>
 
     <div class="wrapper__input">
       <input
         type="password"
+        v-model="data.password"
         class="wrapper__input__content"
         placeholder="請輸入密碼"
       />
@@ -22,18 +27,39 @@
 
 <script>
 import { useRouter } from 'vue-router';
+import { post } from '../utils/request';
+import { reactive } from '@vue/reactivity';
+
 export default {
   name: 'Login',
   setup () {
+    const data = reactive({
+      username: '',
+      password: ''
+    });
     const router = useRouter();
-    const handleLogin = () => {
-      localStorage.isLogin = true;
-      router.push({ name: 'Home' });
+    const handleLogin = async () => {
+      try {
+        const result = await post('/api/user/login2222', {
+          username: data.username,
+          password: data.password
+        });
+        console.log(result);
+        if (result?.errno === 0) {
+          alert('成功');
+          localStorage.isLogin = true;
+          router.push({ name: 'Home' });
+        } else {
+          alert('登錄失敗');
+        }
+      } catch (e) {
+        alert('請求失敗');
+      }
     };
     const handleRegister = () => {
       router.push({ name: 'Register' });
     };
-    return { handleLogin, handleRegister };
+    return { handleLogin, handleRegister, data };
   }
 };
 </script>
