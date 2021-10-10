@@ -1,28 +1,18 @@
 <template>
   <div class="nearby">
     <h3 class="nearby__title">附近店鋪</h3>
-    <div class="nearby__item" v-for="item in nearbyList" :key="item._id">
-      <img class="nearby__item__img" :src="item.imgUrl" />
-      <div class="nearby__content">
-        <div class="nearby__content__title">{{ item.name }}</div>
-        <div class="nearby__content__tags">
-          <span class="nearby__content__tag">月銷量: {{ item.sales }}</span>
-          <span class="nearby__content__tag"
-            >起送: {{ item.expressLimit }}</span
-          >
-          <span class="nearby__content__tag"
-            >基本運費: {{ item.expressPrice }}</span
-          >
-        </div>
-        <p class="nearby__content__hightlight">{{ item.slogan }}</p>
-      </div>
-    </div>
+    <ShopInfo
+      v-for="item in nearbyList"
+      :key="item._id"
+      :shopInfo="item"
+    />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
 import { get } from '../utils/request';
+import ShopInfo from '../../components/ShopInfo.vue';
 
 const useNearbyListEffect = () => {
   const nearbyList = ref([]);
@@ -37,6 +27,9 @@ const useNearbyListEffect = () => {
 
 export default {
   name: 'Nearby',
+  components: {
+    ShopInfo
+  },
   setup () {
     const { getNearbyList, nearbyList } = useNearbyListEffect();
     getNearbyList();
@@ -53,39 +46,6 @@ export default {
     font-size: 0.18rem;
     font-weight: normal;
     color: $content-fontcolor;
-  }
-  &__item {
-    display: flex;
-    padding-top: 0.12rem;
-    &__img {
-      margin-right: 0.16rem;
-      width: 0.56rem;
-      height: 0.56rem;
-    }
-  }
-  &__content {
-    flex: 1;
-    padding-bottom: 0.12rem;
-    border-bottom: 1px solid $content-bgColor;
-    &__title {
-      line-height: 0.22rem;
-      font-size: 0.16rem;
-      color: $content-fontcolor;
-    }
-    &__tags {
-      margin-top: 0.08rem;
-      line-height: 0.18rem;
-      font-size: 0.13rem;
-    }
-    &__tag {
-      margin-right: 0.16rem;
-    }
-    &__hightlight {
-      line-height: 0.18rem;
-      font-size: 0.13rem;
-      color: #e93b3b;
-      margin: 0.08rem 0 0 0;
-    }
   }
 }
 </style>
