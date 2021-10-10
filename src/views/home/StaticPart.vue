@@ -107,8 +107,8 @@ export default {
 .search {
   vertical-align: middle;
   line-height: 0.32rem;
-  background: #f5f5f5;
-  color: #b7b7b7;
+  background: $search-bgColor;
+  color: $search-fontColor;
   border-radius: 0.16rem;
   font-size: 0.14rem;
   margin-bottom: 0.12rem;
