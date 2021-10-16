@@ -17,6 +17,7 @@
       v-if="data.item.imgUrl"
     />
     <Content />
+    <Cart />
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { get } from '../utils/request';
 import ShopInfo from '../../components/ShopInfo.vue';
 import Content from '../shop/content.vue';
+import Cart from '../shop/cart.vue';
 
 const useShopInfoEffect = () => {
   const data = reactive({ item: {} });
@@ -43,7 +45,8 @@ export default {
   name: 'Shop',
   components: {
     ShopInfo,
-    Content
+    Content,
+    Cart
   },
   setup () {
     // router指的是整個route的訊息 route是指當前路由的訊息
